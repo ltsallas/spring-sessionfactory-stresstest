@@ -58,5 +58,4 @@ public class StressController {
 		}
 		threads.stream().forEach(t -> t.start());
 	}
-
 }

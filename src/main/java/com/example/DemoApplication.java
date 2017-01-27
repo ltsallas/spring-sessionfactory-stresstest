@@ -9,15 +9,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.ApplicationContextException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = "com.example.repository")
-
 @ComponentScan("com.example")
 public class DemoApplication {
 
@@ -26,12 +22,8 @@ public class DemoApplication {
 	}
 
 	@Bean
-	@ConfigurationProperties(prefix = "spring")
 	public DataSource dataSource(DataSourceProperties dataSourceProperties) {
-
 		if (dataSourceProperties.getUrl() == null) {
-
-
 			throw new ApplicationContextException("Database connection pool is not configured correctly");
 		}
 		HikariDataSource hikariDataSource =  (HikariDataSource) DataSourceBuilder
